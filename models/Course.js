@@ -13,13 +13,11 @@ const courseSchema = new mongoose.Schema({
     courseContent: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Section",
-        required: true,
     }],
 
     ratingsAndReviews: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "RatingAndReview",
-        required: true,
     }],
 
     category: {
@@ -30,8 +28,7 @@ const courseSchema = new mongoose.Schema({
     studentsEnrolled: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true,
     }]
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Course", courseSchema);

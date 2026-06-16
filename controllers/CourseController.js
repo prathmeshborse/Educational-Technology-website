@@ -38,7 +38,7 @@ exports.createCourse = async (req, res) => {
             courseDescription,
             instructor: instructorId,
             whatYouWillLearn,
-            price,
+            price: Number(price),
             category: categoryDetails._id,
             thumbnail: thumbnailImage.secure_url
         });
@@ -78,6 +78,7 @@ exports.getAllCourses = async (req, res) => {
                 price: true, 
                 instructor: true, 
                 courseDescription: true,
+                category: true,
                 thumbnail: true, // Don't forget the thumbnail!
                 ratingsAndReviews: true, 
                 studentsEnrolled: true
