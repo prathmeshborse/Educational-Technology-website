@@ -1,21 +1,22 @@
-const Tag = require("../models/Tag");
+const Category = require("../models/Category");
 
-// create new tag
-exports.createTag = async (req, res) => {
+// create new Category
+exports.createCategory = async (req, res) => {
     try {
         const {name, description} = req.body;
         if(!name || !description)
             return res.status(401).json({success: false, message: "All fileds are required"});
 
-        const newTag = await Tag.create({name: name, description: description});
+        const newCategory = await Category.create({name: name, description: description});
 
         return res.status(200).json({
             success: true,
-            message: `Tag created for ${name}`,
+            message: `Category created for ${name}`,
+            newCategory,
         });
     } 
     catch (error) {
-        console.log("Error in createTag: ", error);
+        console.log("Error in createCategory: ", error);
         return res.status(500).json({
             success: false,
             message: error.message,
@@ -23,19 +24,20 @@ exports.createTag = async (req, res) => {
     }
 };
 
-// get all tags
-exports.getTags = async (req, res) => {
+
+// get all Categories
+exports.getAllCategories = async (req, res) => {
     try {
-        const tags = await Tag.find({}, {name:true, description: true});
+        const categories = await Category.find({}, {name:true, description: true});
 
         return res.status(200).json({
             success: true,
-            message: "All tags fetched",
-            tags: tags
+            message: "All category fetched",
+            categories: categories
         });
     } 
     catch (error) {
-        console.log("Error in createTag: ", error);
+        console.log("Error in getAllCategory: ", error);
         return res.status(500).json({
             success: false,
             message: error.message,

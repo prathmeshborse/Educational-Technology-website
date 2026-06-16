@@ -13,10 +13,10 @@ const userSchema = new mongoose.Schema({
     },
     courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
     courseProgress: [{ type: mongoose.Schema.Types.ObjectId, ref: "CourseProgress" }],
-    timestamps: true, // useful later for debugging, analytics, and admin features.
 
     token: {type: String},
     resetPasswordExpires: {type: Date},
-});
+    
+}, {timestamps: true,});  // useful later for debugging, analytics, and admin features.
 
 module.exports = mongoose.model("User", userSchema);
