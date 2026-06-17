@@ -22,15 +22,8 @@ exports.createCourse = async (req, res) => {
         if (!categoryDetails)
             return res.status(404).json({ success: false, message: "Category not found." });
 
-        // 3. Upload to Cloudinary (FIXED: Added await)
-        // Here we use the optimized thumbnail settings we discussed earlier
-        const thumbnailImage = await uploadToCloudinary(
-            thumbnail, 
-            process.env.FOLDER_NAME, 
-            300,  // height
-            "auto", // quality
-            300   // width
-        );
+        // 3. Upload to Cloudinary
+        const thumbnailImage = await uploadToCloudinary(thumbnail, process.env.FOLDER_NAME, 300, "auto", 300);
 
         // 4. Create Entry
         const newCourse = await Course.create({
@@ -40,7 +33,8 @@ exports.createCourse = async (req, res) => {
             whatYouWillLearn,
             price: Number(price),
             category: categoryDetails._id,
-            thumbnail: thumbnailImage.secure_url
+            thumbnailUrl: thumbnailImage.secure_url,
+            thumbnailPublicId: thumbnailImage.public_id,
         });
 
         // 5. Update Instructor's Course List
@@ -79,7 +73,7 @@ exports.getAllCourses = async (req, res) => {
                 instructor: true, 
                 courseDescription: true,
                 category: true,
-                thumbnail: true, // Don't forget the thumbnail!
+                thumbnailUrl: true, // Don't forget the thumbnail!
                 ratingsAndReviews: true, 
                 studentsEnrolled: true
             }

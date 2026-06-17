@@ -4,9 +4,11 @@ const courseSchema = new mongoose.Schema({
     courseName: {type: String, required: true},
     courseDescription: {type: String, trim: true},
     price: {type: Number, required: true},
-    thumbnail: {type: String, required: true},
+    thumbnailUrl: {type: String, required: true},
+    thumbnailPublicId: {type: String, required: true},
     whatYouWillLearn: {type: String},
-
+    tags: {type: [String]},
+    
     instructor: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true},
 
 

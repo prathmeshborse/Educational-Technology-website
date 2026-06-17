@@ -16,13 +16,13 @@ const mailSender = async(email, title, body) =>{
         // Send the email and store the response
         const info = await transporter.sendMail({
             from: `"EdTech services" <${process.env.MAIL_USER}>`,
-            to: email, // Template literal `${email}` is redundant here, just pass email
+            to: email,
             subject: title,
             html: body,
         });
 
         console.log("Email info: ", info);
-        return info; // Return the info object for the calling function
+        return info;
     }
     catch(error){
         console.log("Error in mailSender: ", error);

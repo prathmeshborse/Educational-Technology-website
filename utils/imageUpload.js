@@ -6,26 +6,26 @@ exports.uploadToCloudinary = async (file, folder, height, quality, width, resour
         resource_type: resourceType,
     };
 
-    // 1. Set Height and Width
+    // Only apply height/width transformations if they are passed
     if (height) options.height = height;
     if (width) options.width = width;
 
-    // 2. Add Crop Mode (Crucial for thumbnails)
-    // "fill" resizes and crops to ensure the area is filled
-    // "thumb" is specifically designed for thumbnails
+    // Apply crop ONLY if we are resizing
+    // "fill" is great for images, but for videos, you might prefer "scale" or none at all
     if (height || width) {
         options.crop = "fill"; 
+        options.gravity = "auto"; 
     }
 
-    // 3. Add Gravity (Focus on the center or face)
-    // This ensures the most important part of the image isn't cut off
-    options.gravity = "auto"; 
-
-    // 4. Quality/Optimization
     if (quality) {
         options.quality = quality;
     } else {
-        options.quality = "auto"; // Recommended: automatically balances size/quality
+        options.quality = "auto";
+    }
+
+    // Pro-Tip: For large videos, Cloudinary performs better with chunk_size
+    if (resourceType === "video") {
+        options.chunk_size = 6000000; // 6MB chunks
     }
 
     return await cloudinary.uploader.upload(

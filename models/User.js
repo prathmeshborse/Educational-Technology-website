@@ -11,8 +11,8 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Profile",
     },
-    courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
-    courseProgress: [{ type: mongoose.Schema.Types.ObjectId, ref: "CourseProgress" }],
+    courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course"}],
+    courseProgress: [{ type: mongoose.Schema.Types.ObjectId, ref: "CourseProgress"}],
 
     token: {type: String},
     resetPasswordExpires: {type: Date},

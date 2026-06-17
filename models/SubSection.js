@@ -5,7 +5,8 @@ const subSectionSchema = new mongoose.Schema({
     timeDuration: {type: String},
 
     description: {type: String, trim: true},
-    fileUrl: {type: String},
+    videoUrl: {type: String},
+    videoPublicId: {type: String},
 });
 
 module.exports = mongoose.model("SubSection", subSectionSchema);

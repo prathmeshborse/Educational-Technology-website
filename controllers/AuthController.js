@@ -118,7 +118,7 @@ exports.signUp = async (req, res) => {
             password: hashedPassword, additionalDetails: profile._id 
         });
         
-        const userResponse = user.toObject;
+        const userResponse = user.toObject();
         delete userResponse.password;
 
         return res.status(200).json({
@@ -229,7 +229,7 @@ exports.changePassword = async (req, res) => {
         }
 
         // Check duplicate email
-        const existingUser = await User.findById({userId});
+        const existingUser = await User.findById(userId);
         if(!existingUser){
             return res.status(400).json({
                 success: false,
