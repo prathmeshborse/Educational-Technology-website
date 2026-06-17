@@ -7,5 +7,4 @@ const ratingAndReviewSchema = new mongoose.Schema({
     course: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true }, // Good to link back to Course
 });
 
-
 module.exports = mongoose.model("RatingAndReview", ratingAndReviewSchema);

@@ -73,7 +73,7 @@ exports.getAllCourses = async (req, res) => {
                 instructor: true, 
                 courseDescription: true,
                 category: true,
-                thumbnailUrl: true, // Don't forget the thumbnail!
+                thumbnailUrl: true,
                 ratingsAndReviews: true, 
                 studentsEnrolled: true
             }
@@ -85,6 +85,48 @@ exports.getAllCourses = async (req, res) => {
             data: courses
         });
     } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+
+// Get Whole course data including section subsection
+exports.getCourseDetails = async (req,res) => {
+    try {
+        const {courseId} = req.body;
+
+        const course = await Course.findById(courseId)
+            .populate({
+                path: "instructor",
+                select: "-password", // 1. Security: Don't send password
+                populate: {
+                    path: "additionalDetails",
+                },
+            })
+            .populate("category")
+            .populate("ratingsAndReviews")
+            .populate({
+                path: "courseContent",
+                populate: {
+                    path: "subSection",
+                    select: "-videoPublicId" 
+                }
+            }).exec();
+
+        if(!course)
+            return res.status(400).json({success: false, message: `Could not find the course with id: ${courseId}` });
+
+        return res.status(200).json({
+            success: true,
+            message: "Course details fetched successfully",
+            data: course
+        });
+    } 
+    catch (error) {
+        console.log("Error in getCourseDetails: ", error);
         return res.status(500).json({
             success: false,
             message: error.message

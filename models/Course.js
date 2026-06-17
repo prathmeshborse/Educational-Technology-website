@@ -9,6 +9,8 @@ const courseSchema = new mongoose.Schema({
     whatYouWillLearn: {type: String},
     tags: {type: [String]},
     
+    status: {type: String, enum:["Draft", "Published"]},
+    
     instructor: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true},
 
 
