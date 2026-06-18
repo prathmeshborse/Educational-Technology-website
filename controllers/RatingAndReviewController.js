@@ -121,3 +121,5 @@ exports.getAllRating = async (req, res) => {
         });
     }
 };
+
+// File name: RatingAndReviewController.js

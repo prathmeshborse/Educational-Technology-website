@@ -10,3 +10,5 @@ const subSectionSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("SubSection", subSectionSchema);
+
+// File name: SubSection.js

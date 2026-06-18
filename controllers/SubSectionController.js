@@ -129,3 +129,5 @@ exports.deleteSubSection = async (req, res) => {
         });
     }
 };
+
+// File name: SubSectionController.js

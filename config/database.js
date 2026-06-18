@@ -15,3 +15,5 @@ const connectDB = async () =>{
 }
 
 module.exports = connectDB;
+
+// File name database.js

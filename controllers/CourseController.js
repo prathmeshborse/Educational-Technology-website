@@ -133,3 +133,5 @@ exports.getCourseDetails = async (req,res) => {
         });
     }
 };
+
+// File Name: CourseController.js

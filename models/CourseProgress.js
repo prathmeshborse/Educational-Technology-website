@@ -7,3 +7,5 @@ const courseProgressSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("CourseProgress", courseProgressSchema);
+
+// File name: Course Progress.js

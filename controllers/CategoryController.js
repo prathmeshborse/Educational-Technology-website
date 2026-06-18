@@ -147,3 +147,5 @@ exports.categoryPageDetails = async (req, res) => {
         });
     }
 }
+
+// File Name: CategoryController.js

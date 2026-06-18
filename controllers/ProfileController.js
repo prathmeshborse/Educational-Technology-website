@@ -33,10 +33,14 @@ exports.updateProfile = async (req, res) => {
         const {gender, dateOfBirth, about, contactNumber} = req.body;
         const userId = req.user.id;
         
-        if(!contactNumber && !gender && !dateOfBirth && !about&& !userId)
+        if(!contactNumber && !gender && !dateOfBirth && !about)
             return res.status(400).json({success: false, message: "No data recived to update profile"});
         
+
         const user = await User.findById(userId);
+        if(!user)
+            return res.status(400).json({success: false, message: "Invaild user"});
+        
         const profile = await Profile.findById(user.additionalDetails);
 
         if (gender) profile.gender = gender;
@@ -142,3 +146,5 @@ exports.deleteAccount = async (req, res) => {
         });
     }
 };
+
+// File name: ProfileController.js

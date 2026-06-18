@@ -40,5 +40,4 @@ exports.checkRole = (requiredRole) => {
     };
 };
 
-// router.get("/admin-panel", auth, checkRole("Admin"), adminPanel);
-// router.get("/instructor-page", auth, checkRole("Instructor"), instructorController);
+// File name: authMiddleware.js

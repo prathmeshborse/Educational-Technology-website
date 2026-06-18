@@ -11,3 +11,5 @@ const sectionSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Section", sectionSchema);
+
+// File name: Section.js

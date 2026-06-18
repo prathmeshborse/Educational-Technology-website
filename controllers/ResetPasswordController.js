@@ -96,3 +96,5 @@ exports.resetPassword = async (req, res) => {
         });
     }
 };
+
+// File Name: ResetPasswordController.js

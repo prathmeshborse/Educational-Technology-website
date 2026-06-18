@@ -17,7 +17,7 @@ const otpSchema = new mongoose.Schema({
 async function sendVerificationEmail(email, otp) {
     try{
         const mailResponse = await mailSender(email, "Verification email from Edtech", otpTemplate(otp));
-        console.log("Email sent successfully!", mailResponse);
+        // console.log("OTP sent successfully!", mailResponse);
     }
     catch(error){
         console.log("Error While sending mail for otp verification: ", error);
@@ -26,18 +26,23 @@ async function sendVerificationEmail(email, otp) {
 };
 
 // pre Save middleware befor saving otp in db
-otpSchema.pre('save', async function(next){
+otpSchema.pre('save', async function(){
     try {
-        // 'this' refers to the current document being saved
-        await sendVerificationEmail(this.email, this.otp);
-        next(); // Move to the next middleware or save the doc
+        // Only send an email when a new document is created
+        if (this.isNew) {
+            await sendVerificationEmail(this.email, this.otp);
+        }
+        // No next() needed here for async functions
     } catch (error) {
-        // If email fails, the document will NOT be saved
-        next(error); 
+        console.log("Error occurred while sending mail: ", error);
+        throw error; // Throwing error stops the save process
     }
 });
+
 
 //If sendVerificationEmail throws an error and you pass it into next(error), Mongoose will stop the saving process.
 //This prevents "orphaned" OTPs in your database where a user has a code saved in the DB but never actually received the email.
 
 module.exports = mongoose.model("OTP", otpSchema);
+
+// File Name: OTP.js

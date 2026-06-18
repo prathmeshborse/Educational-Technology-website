@@ -104,7 +104,7 @@ exports.signUp = async (req, res) => {
 
         // Profile for user
         const profile = await Profile.create({
-            gender:null, dateOfBirth: null, about: null, contactNumber:contactNo,
+            gender:null, dateOfBirth: null, about: null, contactNumber:contactNo? contactNo: null,
             imageURL: `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(`${firstName} ${lastName}`)}`,
         });
         
@@ -179,7 +179,6 @@ exports.login = async (req, res) =>{
 
             return res.cookie("token", token, options).status(200).json({
                 success: true,
-                token,
                 userResponse,
                 message: "Logged in successfully"
             });
@@ -237,7 +236,7 @@ exports.changePassword = async (req, res) => {
             });
         }
         
-        const isMatch = await bcrypt.compare(oldPassword, existingUser.password);
+        const isMatch = await bcrypt.compare(oldPassword, existingUser.password.toString());
 
         if (!isMatch) {
             return res.status(401).json({
@@ -267,3 +266,5 @@ exports.changePassword = async (req, res) => {
         });
     }
 };
+
+// File name AuthController.js

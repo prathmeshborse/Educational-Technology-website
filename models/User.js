@@ -20,3 +20,5 @@ const userSchema = new mongoose.Schema({
 }, {timestamps: true,});  // useful later for debugging, analytics, and admin features.
 
 module.exports = mongoose.model("User", userSchema);
+
+// File name: User.js
