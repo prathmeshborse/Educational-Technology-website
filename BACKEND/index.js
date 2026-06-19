@@ -27,11 +27,10 @@ app.use(cookieParser());
 
 app.use(
     cors({
-        origin: process.env.FRONTEND_URL || "http://localhost:3000",
-        credentials: true,
+        origin: process.env.FRONTEND_URL || "http://localhost:5173", // This now points to http://localhost:5173
+        credentials: true,                // Important for cookies/sessions
     })
 );
-
 // Middleware for file upload
 app.use(
     fileUpload({

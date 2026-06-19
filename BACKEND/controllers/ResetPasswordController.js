@@ -32,7 +32,7 @@ exports.resetPasswordToken = async (req, res) => {
         );
 
         // 4. Create URL (Using Env Variable)
-        const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+        const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
         const url = `${frontendUrl}/reset-password/${token}`;
 
         // 5. Send Mail

@@ -1,0 +1,27 @@
+{
+  "name": "edtech_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd BACKEND && npm run dev",
+    "client": "cd FRONTEND && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && cd BACKEND && npm install && cd ../FRONTEND && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prathmeshborse/Educational-Technology-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/prathmeshborse/Educational-Technology-website/issues"
+  },
+  "homepage": "https://github.com/prathmeshborse/Educational-Technology-website#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
