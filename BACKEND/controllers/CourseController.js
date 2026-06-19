@@ -77,7 +77,7 @@ exports.getAllCourses = async (req, res) => {
                 ratingsAndReviews: true, 
                 studentsEnrolled: true
             }
-        ).populate("instructor").populate("category").exec();
+        ).populate({path: "instructor",select: "firstName lastName email imageURL"}).populate("category").exec();
             
         return res.status(200).json({
             success: true,
@@ -101,7 +101,7 @@ exports.getCourseDetails = async (req,res) => {
         const course = await Course.findById(courseId)
             .populate({
                 path: "instructor",
-                select: "-password", // 1. Security: Don't send password
+                select: "-password",
                 populate: {
                     path: "additionalDetails",
                 },

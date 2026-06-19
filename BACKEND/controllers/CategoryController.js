@@ -57,7 +57,10 @@ exports.categoryPageDetails = async (req, res) => {
             .populate({
                 path: "courses",
                 match: { status: "Published" }, // Only show published courses
-                populate: "instructor",
+                populate: {
+                    path: "instructor",
+                    select: "firstName lastName email imageURL" // Only select safe fields
+                },
             }).exec();
 
         if (!selectedCategory) {
@@ -78,13 +81,20 @@ exports.categoryPageDetails = async (req, res) => {
         // We find categories that are NOT the current one
         const categoriesExceptSelected = await Category.find({_id: { $ne: categoryId },});
         
-        let differentCategory = await Category.findOne(
-            categoriesExceptSelected[Math.floor(Math.random() * categoriesExceptSelected.length)]._id
-        )
-        .populate({
-            path: "courses",
-            match: { status: "Published" },
-        }).exec();
+        let differentCategory = null; // Default to null if no other categories exist
+
+        if (categoriesExceptSelected.length > 0) {
+            const randomIndex = Math.floor(Math.random() * categoriesExceptSelected.length);
+            const randomCategory = categoriesExceptSelected[randomIndex];
+            
+            differentCategory = await Category.findById(randomCategory._id)
+                .populate({
+                    path: "courses",
+                    match: { status: "Published" },
+                    populate: "instructor",
+                })
+                .exec();
+        }
 
 
         // 3. Get TOP SELLING courses across the whole platform
@@ -98,7 +108,7 @@ exports.categoryPageDetails = async (req, res) => {
                 $lookup: {
                     from: "users",             // The name of the collection in MongoDB (usually lowercase plural)
                     localField: "instructor",   // The field in Course schema
-                    foreignField: "_id",        // The field in User schema
+                    foreignField: "_id",        // The field in User schema (here is _id error)
                     as: "instructorDetails",    // The temporary name for the joined data
                 },
             },

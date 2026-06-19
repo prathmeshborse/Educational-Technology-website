@@ -40,7 +40,7 @@ exports.updateProfile = async (req, res) => {
         const user = await User.findById(userId);
         if(!user)
             return res.status(400).json({success: false, message: "Invaild user"});
-        
+
         const profile = await Profile.findById(user.additionalDetails);
 
         if (gender) profile.gender = gender;
@@ -67,7 +67,7 @@ exports.updateProfile = async (req, res) => {
 };
 
 
-// Delete Account
+// Delete Account (Testing pending)
 exports.deleteAccount = async (req, res) => {
     try {
         const userId = req.user.id;

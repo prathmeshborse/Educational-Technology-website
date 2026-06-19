@@ -13,6 +13,11 @@ exports.createSubSection = async (req, res) => {
 
         const video = req.files.videoFile;
 
+        // Find if section exists or not
+        const section = await Section.findById(sectionId);
+        if(!section)
+            return res.status(404).json({success: false, message: "No section Found with given id"});
+        
         // upload video file to cloudinary
         const cloudinaryResponse = await uploadToCloudinary(video, process.env.FOLDER_NAME);
 

@@ -16,8 +16,8 @@ const { auth, checkRole } = require("../middlewares/authMiddleware");
 // ********************************************************************************************************
 router.post("/createCourse", auth, checkRole("instructor"), createCourse);
 router.post("/addSection", auth, checkRole("instructor"), createSection);
-router.post("/updateSection", auth, checkRole("instructor"), updateSection);
-router.post("/deleteSection", auth, checkRole("instructor"), deleteSection);
+router.put("/updateSection", auth, checkRole("instructor"), updateSection);
+router.delete("/deleteSection", auth, checkRole("instructor"), deleteSection);
 router.post("/addSubSection", auth, checkRole("instructor"), createSubSection);
 router.post("/updateSubSection", auth, checkRole("instructor"), updateSubSection);
 router.post("/deleteSubSection", auth, checkRole("instructor"), deleteSubSection);
