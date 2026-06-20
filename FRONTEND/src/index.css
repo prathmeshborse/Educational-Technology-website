@@ -1,1 +1,23 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    overflow-x: hidden;
+}
+
+.codeblock {
+  position: absolute;
+  left: 20%;
+  top: 10%;
+  width: 220px;
+  height: 220px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    123deg,
+    rgba(31, 162, 255, 0.35),
+    rgba(18, 216, 250, 0.25),
+    rgba(166, 255, 203, 0.15)
+  );
+  filter: blur(70px);
+}
