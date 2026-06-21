@@ -1,5 +1,8 @@
 import { Route, Routes } from "react-router-dom";
+import OpenRoute from "./components/core/Auth/OpenRoute";
+
 import Home from "./pages/Home";
+// import Login from "./pages/Login";
 
 function App() {
   return (
@@ -7,6 +10,9 @@ function App() {
         <Routes>
 
           <Route path="/" element={<Home/>} />
+
+          {/* <Route path="signup" element={ <OpenRoute> <Signup />  </OpenRoute> } /> */}
+          {/* <Route path="login" element={ <OpenRoute> <Login />  </OpenRoute> } /> */}
 
         </Routes>
       </div>

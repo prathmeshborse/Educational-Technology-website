@@ -5,10 +5,10 @@ import { FaArrowRight } from "react-icons/fa";
 
 const CodeBlocks = ({ position, heading, subheading, ctabtn1, ctabtn2, codeblock, backgroundGradient, codeColor}) => {
   return (
-    <div className={`flex ${position} items-start justify-between gap-16 py-16`}>
+    <div className={`flex flex-col ${position} items-start justify-between gap-10 lg:gap-16 py-10 lg:py-16`} >
 
       {/* Left Section */}
-      <div className="flex w-full flex-col gap-8 lg:w-[50%]">
+      <div className="flex w-full flex-col gap-6 lg:w-[48%]">
 
         {heading}
 
@@ -47,14 +47,14 @@ const CodeBlocks = ({ position, heading, subheading, ctabtn1, ctabtn2, codeblock
         <div className="flex px-4 py-5">
 
           {/* Line Numbers */}
-          <div className="flex w-[12%] flex-col items-center font-mono text-richblack-500 select-none">
+          <div className="flex w-[10%] flex-col items-center font-mono text-richblack-500 select-none">
             {Array.from({ length: 11 }, (_, i) => (
               <p key={i}>{i + 1}</p>
             ))}
           </div>
 
           {/* Code */}
-          <div className={`w-[88%] font-mono text-sm leading-7 ${codeColor}`}>
+          <div className={`w-full font-mono text-xs sm:text-sm leading-6 sm:leading-7 ${codeColor}`} >
             <TypeAnimation
               sequence={[codeblock, 2000, ""]}
               repeat={Infinity}
