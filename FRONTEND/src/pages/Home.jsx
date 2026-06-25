@@ -23,7 +23,7 @@ function Home() {
         {/* Section 1 */}
         <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 text-white">
             <Link to="/signup">
-                <div className="group mt-16 rounded-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 p-[2px] shadow-lg shadow-yellow-500/30 transition-all duration-300 hover:scale-105 hover:shadow-yellow-400/50">
+                <div className="group mt-10 rounded-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 p-[2px] shadow-lg shadow-yellow-500/30 transition-all duration-300 hover:scale-105 hover:shadow-yellow-400/50">
                     <div className="flex items-center gap-3 rounded-full bg-richblack-900 px-8 py-3 font-semibold tracking-wide transition-all duration-300 group-hover:bg-richblack-800">
                         <span>Become an Instructor</span>
                         <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />

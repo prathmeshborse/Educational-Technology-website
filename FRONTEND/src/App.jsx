@@ -3,7 +3,17 @@ import OpenRoute from "./components/core/Auth/OpenRoute";
 
 import Navbar from "./components/common/Navbar";
 import Home from "./pages/Home";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import UpdatePassword from "./pages/UpdatePassword";
+import VerifyEmail from "./pages/VerifyEmail";
+
+import Dashboard from "./pages/Dashboard";
+import MyProfile from "./components/core/Dashboard/MyProfile";
+import PrivateRoute from "./components/core/Auth/PrivateRoute";
+
+
 
 function App() {
   return (
@@ -15,8 +25,14 @@ function App() {
 
           <Route path="/" element={<Home/>} />
 
-          {/* <Route path="signup" element={ <OpenRoute> <Signup />  </OpenRoute> } /> */}
-          {/* <Route path="login" element={ <OpenRoute> <Login />  </OpenRoute> } /> */}
+          <Route path="signup" element={ <OpenRoute> <Signup />  </OpenRoute> } />
+          <Route path="login" element={ <OpenRoute> <Login />  </OpenRoute> } />
+          <Route path="forgot-password" element = { <OpenRoute> <ForgotPassword/> </OpenRoute> } />
+          <Route path="reset-password/:token" element = {<OpenRoute>  <UpdatePassword/> </OpenRoute>} />
+          <Route path="verify-email" element= {<OpenRoute> <VerifyEmail/> </OpenRoute>} />
+
+          <Route element={  <PrivateRoute> <Dashboard />  </PrivateRoute> } />
+          <Route path="dashboard/my-profile" element={<MyProfile />} />
 
         </Routes>
       </div>

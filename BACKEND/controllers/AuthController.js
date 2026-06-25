@@ -150,7 +150,7 @@ exports.login = async (req, res) =>{
         }
         
         // Check duplicate email
-        const existingUser = await User.findOne({email});
+        const existingUser = await User.findOne({email}).populate("additionalDetails");
         if(!existingUser){
             return res.status(400).json({
                 success: false,
@@ -179,7 +179,7 @@ exports.login = async (req, res) =>{
 
             return res.cookie("token", token, options).status(200).json({
                 success: true,
-                userResponse,
+                user: userResponse,
                 message: "Logged in successfully"
             });
         }
