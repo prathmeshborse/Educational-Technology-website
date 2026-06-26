@@ -88,8 +88,8 @@ export function signUp(
 
 export function login(email, password, navigate) {
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", LOGIN_API, {
         email,
@@ -107,9 +107,7 @@ export function login(email, password, navigate) {
 
       dispatch(setToken(user.token));
 
-      const userImage =
-        user.additionalDetails?.imageURL ||
-        `https://api.dicebear.com/5.x/initials/svg?seed=${user.firstName} ${user.lastName}`;
+      const userImage = user.additionalDetails?.imageURL || `https://api.dicebear.com/5.x/initials/svg?seed=${user.firstName} ${user.lastName}`;
 
       dispatch(setUser({ ...user, image: userImage }));
 

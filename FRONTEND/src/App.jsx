@@ -13,30 +13,33 @@ import Dashboard from "./pages/Dashboard";
 import MyProfile from "./components/core/Dashboard/MyProfile";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 
+import About from "./pages/About";
 
 
 function App() {
-  return (
-      <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
+	return (
+		<div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
 
-        <Navbar/>
+			<Navbar />
 
-        <Routes>
+			<Routes>
 
-          <Route path="/" element={<Home/>} />
+				<Route path="/" element={<Home />} />
 
-          <Route path="signup" element={ <OpenRoute> <Signup />  </OpenRoute> } />
-          <Route path="login" element={ <OpenRoute> <Login />  </OpenRoute> } />
-          <Route path="forgot-password" element = { <OpenRoute> <ForgotPassword/> </OpenRoute> } />
-          <Route path="reset-password/:token" element = {<OpenRoute>  <UpdatePassword/> </OpenRoute>} />
-          <Route path="verify-email" element= {<OpenRoute> <VerifyEmail/> </OpenRoute>} />
+				<Route path="signup" element={<OpenRoute> <Signup />  </OpenRoute>} />
+				<Route path="login" element={<OpenRoute> <Login />  </OpenRoute>} />
+				<Route path="forgot-password" element={<OpenRoute> <ForgotPassword /> </OpenRoute>} />
+				<Route path="reset-password/:token" element={<OpenRoute>  <UpdatePassword /> </OpenRoute>} />
+				<Route path="verify-email" element={<OpenRoute> <VerifyEmail /> </OpenRoute>} />
 
-          <Route element={  <PrivateRoute> <Dashboard />  </PrivateRoute> } />
-          <Route path="dashboard/my-profile" element={<MyProfile />} />
+				<Route path="/about" element={<About />} />
 
-        </Routes>
-      </div>
-  );
+				<Route element={<PrivateRoute> <Dashboard />  </PrivateRoute>} />
+				<Route path="dashboard/my-profile" element={<MyProfile />} />
+
+			</Routes>
+		</div>
+	);
 }
 
 export default App;

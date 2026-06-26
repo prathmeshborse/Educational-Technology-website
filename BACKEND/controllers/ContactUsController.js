@@ -1,12 +1,13 @@
 const mailSender = require("../utils/mailSender");
 const contactUsTemplate = require("../email_template/contactUsTemplate");
+const contactUsConfirmationTemplate = require("../email_template/contactUsConfirmationTemplate");
 
 exports.contactUs = async (req, res) => {
     try {
         const { email, firstname, lastname, message, phoneNo, countrycode } = req.body;
 
         await mailSender(
-            "borseprathmesh99@gmail.com",
+            "jmkn704@gmail.com",
             "New User Query",
             contactUsTemplate(
                 firstname,
