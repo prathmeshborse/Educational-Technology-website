@@ -5,6 +5,7 @@ import BannerImage1 from "../assets/Images/aboutus1.webp"
 import BannerImage2 from "../assets/Images/aboutus2.webp"
 import BannerImage3 from "../assets/Images/aboutus3.webp"
 
+import ContactDetails from "../components/ContactPage/ContactDetails"
 import ContactFormSection from "../components/core/AboutPage/ContactFormSection"
 import LearningGrid from "../components/core/AboutPage/LearningGrid"
 import Quote from "../components/core/AboutPage/Quote"
@@ -104,8 +105,16 @@ const About = () => {
 
             <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white">
                 <LearningGrid />
-                <ContactFormSection />
             </section>
+            
+            <div className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-white lg:flex-row">
+                {/* Contact Details */}
+                <div className="lg:w-[40%]">
+                    <ContactDetails />
+                </div>
+                
+                <ContactFormSection />
+            </div>
 
             <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
                 {/* Reviws from Other Learner */}
