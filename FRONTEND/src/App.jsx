@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import OpenRoute from "./components/core/Auth/OpenRoute";
+import { useSelector } from "react-redux";
 
+import { ACCOUNT_TYPE } from "./utils/constants";
 import Navbar from "./components/common/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -13,12 +15,15 @@ import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import MyProfile from "./components/core/Dashboard/MyProfile";
 import Settings from "./components/core/Dashboard/Settings";
+import Cart from "./components/core/Dashboard/Cart";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
 
 function App() {
+	const { user } = useSelector((state) => state.profile);
 	return (
 		<div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
 
@@ -40,6 +45,15 @@ function App() {
 				<Route element={<PrivateRoute> <Dashboard />  </PrivateRoute>}> 
 					<Route path="dashboard/my-profile" element={<MyProfile />} />
 					<Route path="dashboard/Settings" element={<Settings />} />
+
+					{
+						user?.accountType === ACCOUNT_TYPE.STUDENT && (
+							<>
+								<Route path="dashboard/cart" element={<Cart />} />
+								<Route path="dashboard/enrolled-courses" element={<EnrolledCourses />} />
+							</>
+						)
+					}
 				</Route>
 
 

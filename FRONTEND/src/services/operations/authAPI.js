@@ -112,12 +112,8 @@ export function login(email, password, navigate) {
       dispatch(setUser({ ...user, image: userImage }));
 
       localStorage.setItem("token", JSON.stringify(user.token));
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ ...user, image: userImage })
-      );
+      localStorage.setItem( "user", JSON.stringify({ ...user, image: userImage }));
       navigate("/dashboard/my-profile");
-      // navigate("/");
       
     } catch (error) {
       console.log("LOGIN API ERROR:", error);
@@ -141,7 +137,7 @@ export function logout(navigate) {
     toast.success("Logged Out");
     navigate("/");
   }
-}
+};
 
 
 

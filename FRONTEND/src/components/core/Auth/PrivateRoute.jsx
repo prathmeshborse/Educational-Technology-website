@@ -7,10 +7,9 @@ const PrivateRoute = ({children}) => {
     const {token} = useSelector((state) => state.auth);
 
     if(token !== null)
-        return children
+        return children;
     else
-        return <Navigate to="/login" />
-
-}
+        return <Navigate to="/login" />;
+};
 
 export default PrivateRoute
